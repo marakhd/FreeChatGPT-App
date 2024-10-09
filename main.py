@@ -1,9 +1,11 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import QTimer
 
 from g4f.client import Client
 from pathlib import Path
+from threading import Thread
+from queue import Queue, Empty
 
 from ui.ui import Ui_MainWindow
 
@@ -17,6 +19,8 @@ class App(QMainWindow, Ui_MainWindow):
         self.setWindowTitle("ChatGPT")
         self.setWindowIcon(QIcon(str(Path(__file__).resolve().parent / 'ui' / 'icon.png')))
 
+        self.result_queue = Queue()
+
         self.inputField.setFocus()
         self.inputField.register_hendler(self._response)
 
@@ -27,10 +31,11 @@ class App(QMainWindow, Ui_MainWindow):
     def _response(self) -> None:
         text = self.inputField.toPlainText()
         self.inputField.clear()
-        self.textBrowser.append(self.__response(text))
+        
+        Thread(target=self.__response, args=(text,)).start()
+        self.__check_thread()
 
-    @staticmethod
-    def __response(text: str) -> str:
+    def __response(self, text: str) -> str:
         response = client.chat.completions.create(
             model="gpt-4o",
             messages=[{
@@ -38,8 +43,17 @@ class App(QMainWindow, Ui_MainWindow):
                 "content": text
             }]
         )
-        return response.choices[0].message.content
-            
+        res = response.choices[0].message.content
+        self.result_queue.put(res)
+    
+    def __check_thread(self) -> None:
+        try:
+            answer = self.result_queue.get_nowait()
+            self.textBrowser.setMarkdown(answer)
+        except Empty:
+            self.textBrowser.setMarkdown("Ожидание ответа...")
+            QTimer.singleShot(100, self.__check_thread)
+    
     def __state_btn(self) -> None:
         self.sendButton.setVisible(not self.action_2.isChecked())
 
