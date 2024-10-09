@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="bg">
+    <file>bg.webp</file>
+  </qresource>
+  <qresource prefix="icon">
+    <file>icon-send.png</file>
+  </qresource>
+</RCC>
