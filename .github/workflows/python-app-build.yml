@@ -36,6 +36,18 @@ jobs:
         name: ChatGPTFree-App-linux
         path: dist/ChatGPTFree-App-linux
 
+    - name: Commit and Push Built App
+      run: |
+        cd dist
+        cp ChatGPTFree-App-linux ../ChatGPTFree-App-linux
+        git config --global user.name 'marakhd'
+        git config --global user.email 'marakin09@mail.ru'
+        git add ChatGPTFree-App-linux
+        git commit -m 'Add built application' || echo "Nothing to commit"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   build-windows:
     runs-on: windows-latest
 
@@ -53,17 +65,29 @@ jobs:
         python -m pip install --upgrade pip
         pip install PyQT5 g4f curl_cffi
         pip install pyinstaller
-        if exist requirements.txt (pip install -r requirements.txt)
+        pip install -r requirements.txt
         
     - name: Build Windows
       run: |
         pyinstaller --noconfirm --onefile --windowed --icon "ui/icon.ico" --name "ChatGPTFree-App-windows" --add-data "ui/:ui/"  "main.py"
-        
+
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
         name: exe-build
-        path: dist/ChatGPTFree-App.windows.exe
+        path: dist/ChatGPTFree-App-windows.exe
+
+    - name: Commit and Push Built App
+      run: |
+        cd dist
+        cp ChatGPTFree-App-windows ../ChatGPTFree-App-windows
+        git config --global user.name 'marakhd'
+        git config --global user.email 'marakin09@mail.ru'
+        git add ChatGPTFree-App-windows
+        git commit -m 'Add built application' || echo "Nothing to commit"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-macos:
     runs-on: macos-latest
@@ -82,6 +106,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install PyQT5 g4f curl_cffi
         pip install pyinstaller
+        pip install Pillow
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         
     - name: Build macOS
@@ -93,4 +118,16 @@ jobs:
       with:
         name: exe-build
         path: dist/ChatGPTFree-App.macOS
+
+    - name: Commit and Push Built App
+      run: |
+        cd dist
+        cp ChatGPTFree-App-macos ../ChatGPTFree-App-macos
+        git config --global user.name 'marakhd'  # Укажите ваше имя
+        git config --global user.email 'marakin09@mail.ru'  # Укажите ваш email
+        git add ChatGPTFree-App-macos
+        git commit -m 'Add built application' || echo "Nothing to commit"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
