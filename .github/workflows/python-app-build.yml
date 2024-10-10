@@ -42,8 +42,9 @@ jobs:
         cp ChatGPTFree-App-linux ../ChatGPTFree-App-linux
         git config --global user.name 'marakhd'
         git config --global user.email 'marakin09@mail.ru'
+        git pull --rebase origin main
         git add ChatGPTFree-App-linux
-        git commit -m 'Add built application' || echo "Nothing to commit"
+        git commit -m 'Add build application Linux' || echo "Nothing to commit"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -83,8 +84,9 @@ jobs:
         cp ChatGPTFree-App-windows.exe ../ChatGPTFree-App-windows.exe
         git config --global user.name 'marakhd'
         git config --global user.email 'marakin09@mail.ru'
+        git pull --rebase origin main
         git add ChatGPTFree-App-windows
-        git commit -m 'Add built application' || echo "Nothing to commit"
+        git commit -m 'Add build application Windows' || echo "Nothing to commit"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -117,7 +119,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: ChatGPTFree-App.macOS
-        path: dist/ChatGPTFree-App.macOS
+        path: dist/ChatGPTFree-App.macos
 
     - name: Commit and Push Built App
       run: |
@@ -125,8 +127,9 @@ jobs:
         cp ChatGPTFree-App-macos ../ChatGPTFree-App-macos
         git config --global user.name 'marakhd'  # Укажите ваше имя
         git config --global user.email 'marakin09@mail.ru'  # Укажите ваш email
+        git pull --rebase origin main
         git add ChatGPTFree-App-macos
-        git commit -m 'Add built application' || echo "Nothing to commit"
+        git commit -m 'Add build application macOS' || echo "Nothing to commit"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
