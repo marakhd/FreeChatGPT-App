@@ -85,7 +85,7 @@ jobs:
         git config --global user.name 'marakhd'
         git config --global user.email 'marakin09@mail.ru'
         git pull --rebase origin main
-        git add ChatGPTFree-App-windows
+        git add ChatGPTFree-App-windows.exe
         git commit -m 'Add build application Windows' || echo "Nothing to commit"
         git push
       env:
