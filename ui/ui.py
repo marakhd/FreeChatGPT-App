@@ -9,10 +9,8 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 from .text_edit import EnterTextEdit
 from .rcc import *
-
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -25,19 +23,17 @@ class Ui_MainWindow(object):
 "background-repeat: no-repeat; /* Избегаем повторений */\n"
 "background-position: center; /* Центрируем изображение */\n"
 "}\n"
-"QTextEdit {\n"
+"QTextEdit, QListWidget {\n"
 "background-color: rgba(255, 255, 255, .8);\n"
 "border-radius: 12px;\n"
 "padding: 10px;\n"
 "}\n"
 "QPushButton {\n"
-"background-color: rgba(255, 255, 255, 0);\n"
-"width: 20px;\n"
-"border: 2px solid black;\n"
-"border-radius: 5px;\n"
-"}\n"
-"QPushButton:active {\n"
 "background-color: rgba(255, 255, 255, .6);\n"
+"width: 20px;\n"
+"height: 10px;\n"
+"border: 2px solid black;\n"
+"border-radius: 25px;\n"
 "}\n"
 "")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -47,71 +43,80 @@ class Ui_MainWindow(object):
         self.gridLayout_3.setObjectName("gridLayout_3")
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
-        self.scrollLayout_2 = QtWidgets.QHBoxLayout()
-        self.scrollLayout_2.setSpacing(0)
-        self.scrollLayout_2.setObjectName("scrollLayout_2")
-        spacerItem = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.scrollLayout_2.addItem(spacerItem)
-        self.textBrowser = QtWidgets.QTextBrowser(self.centralwidget)
-        self.textBrowser.setObjectName("textBrowser")
-        self.scrollLayout_2.addWidget(self.textBrowser)
-        spacerItem1 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
-        self.scrollLayout_2.addItem(spacerItem1)
-        self.verticalLayout.addLayout(self.scrollLayout_2)
-        spacerItem2 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        self.verticalLayout.addItem(spacerItem2)
+        self.header = QtWidgets.QHBoxLayout()
+        self.header.setObjectName("header")
+        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.header.addItem(spacerItem)
+        self.headerText = QtWidgets.QLabel(self.centralwidget)
+        self.headerText.setStyleSheet("font-weight: bold;\n"
+"font: 25px \"JetBrains Mono\";")
+        self.headerText.setObjectName("headerText")
+        self.header.addWidget(self.headerText)
+        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.header.addItem(spacerItem1)
+        self.verticalLayout.addLayout(self.header)
+        self.chatLayout = QtWidgets.QHBoxLayout()
+        self.chatLayout.setSpacing(0)
+        self.chatLayout.setObjectName("chatLayout")
+        spacerItem2 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.chatLayout.addItem(spacerItem2)
+        self.chatListWidget = QtWidgets.QListWidget(self.centralwidget)
+        self.chatListWidget.setObjectName("chatListWidget")
+        self.chatLayout.addWidget(self.chatListWidget)
+        spacerItem3 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
+        self.chatLayout.addItem(spacerItem3)
+        self.verticalLayout.addLayout(self.chatLayout)
+        spacerItem4 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        self.verticalLayout.addItem(spacerItem4)
         self.fieldLayout = QtWidgets.QHBoxLayout()
         self.fieldLayout.setObjectName("fieldLayout")
-        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.fieldLayout.addItem(spacerItem3)
+        spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.fieldLayout.addItem(spacerItem5)
         self.inputField = EnterTextEdit(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.inputField.sizePolicy().hasHeightForWidth())
         self.inputField.setSizePolicy(sizePolicy)
-        self.inputField.setPlaceholderText("Введите запрос...")
         self.inputField.setMinimumSize(QtCore.QSize(350, 0))
         self.inputField.setMaximumSize(QtCore.QSize(16777215, 120))
         self.inputField.setStyleSheet("")
         self.inputField.setObjectName("inputField")
         self.fieldLayout.addWidget(self.inputField)
-        spacerItem4 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.fieldLayout.addItem(spacerItem4)
-        self.verticalLayout.addLayout(self.fieldLayout)
-        self.buttonLayout = QtWidgets.QHBoxLayout()
-        self.buttonLayout.setObjectName("buttonLayout")
-        spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.buttonLayout.addItem(spacerItem5)
         self.sendButton = QtWidgets.QPushButton(self.centralwidget)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.sendButton.sizePolicy().hasHeightForWidth())
         self.sendButton.setSizePolicy(sizePolicy)
-        self.sendButton.setMinimumSize(QtCore.QSize(80, 25))
+        self.sendButton.setMinimumSize(QtCore.QSize(50, 50))
         self.sendButton.setText("")
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/icon/icon-send.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.sendButton.setIcon(icon)
         self.sendButton.setObjectName("sendButton")
-        self.buttonLayout.addWidget(self.sendButton)
+        self.fieldLayout.addWidget(self.sendButton)
         spacerItem6 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.buttonLayout.addItem(spacerItem6)
-        self.verticalLayout.addLayout(self.buttonLayout)
+        self.fieldLayout.addItem(spacerItem6)
+        self.verticalLayout.addLayout(self.fieldLayout)
         self.gridLayout_3.addLayout(self.verticalLayout, 0, 1, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menuBar = QtWidgets.QMenuBar(MainWindow)
         self.menuBar.setGeometry(QtCore.QRect(0, 0, 450, 21))
+        self.menuBar.setAcceptDrops(False)
         self.menuBar.setObjectName("menuBar")
         self.menu = QtWidgets.QMenu(self.menuBar)
+        self.menu.setAcceptDrops(False)
         self.menu.setObjectName("menu")
         MainWindow.setMenuBar(self.menuBar)
-        self.action_2 = QtWidgets.QAction(MainWindow)
-        self.action_2.setCheckable(True)
-        self.action_2.setShortcut("Ctrl+R")
-        self.action_2.setObjectName("action_2")
-        self.menu.addAction(self.action_2)
+        self.offBtnSend = QtWidgets.QAction(MainWindow)
+        self.offBtnSend.setCheckable(True)
+        self.offBtnSend.setObjectName("offBtnSend")
+        self.clearCtx = QtWidgets.QAction(MainWindow)
+        self.clearCtx.setObjectName("clearCtx")
+        self.menu.addAction(self.offBtnSend)
+        self.menu.addSeparator()
+        self.menu.addAction(self.clearCtx)
         self.menuBar.addAction(self.menu.menuAction())
 
         self.retranslateUi(MainWindow)
@@ -120,5 +125,10 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.headerText.setText(_translate("MainWindow", "ChatGPT"))
+        self.inputField.setPlaceholderText(_translate("MainWindow", "Введите запрос..."))
         self.menu.setTitle(_translate("MainWindow", "Настройки"))
-        self.action_2.setText(_translate("MainWindow", "Отключить кнопку отправки"))
+        self.offBtnSend.setText(_translate("MainWindow", "Отключить кнопку отправки"))
+        self.offBtnSend.setShortcut(_translate("MainWindow", "Ctrl+B"))
+        self.clearCtx.setText(_translate("MainWindow", "Очистить контекст"))
+        self.clearCtx.setShortcut(_translate("MainWindow", "Ctrl+R"))

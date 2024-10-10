@@ -31,19 +31,17 @@ background-image: url(:/bg/bg.webp);
 background-repeat: no-repeat; /* Избегаем повторений */
 background-position: center; /* Центрируем изображение */
 }
-QTextEdit {
+QTextEdit, QListWidget {
 background-color: rgba(255, 255, 255, .8);
 border-radius: 12px;
 padding: 10px;
 }
 QPushButton {
-background-color: rgba(255, 255, 255, 0);
-width: 20px;
-border: 2px solid black;
-border-radius: 5px;
-}
-QPushButton:active {
 background-color: rgba(255, 255, 255, .6);
+width: 20px;
+height: 10px;
+border: 2px solid black;
+border-radius: 25px;
 }
 </string>
   </property>
@@ -55,7 +53,48 @@ background-color: rgba(255, 255, 255, .6);
     <item row="0" column="1">
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <layout class="QHBoxLayout" name="scrollLayout_2">
+       <layout class="QHBoxLayout" name="header">
+        <item>
+         <spacer name="horizontalSpacer_4">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="headerText">
+          <property name="styleSheet">
+           <string notr="true">font-weight: bold;
+font: 25px &quot;JetBrains Mono&quot;;</string>
+          </property>
+          <property name="text">
+           <string>ChatGPT</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="chatLayout">
         <property name="spacing">
          <number>0</number>
         </property>
@@ -76,7 +115,7 @@ background-color: rgba(255, 255, 255, .6);
          </spacer>
         </item>
         <item>
-         <widget class="QTextBrowser" name="textBrowser"/>
+         <widget class="QListWidget" name="chatListWidget"/>
         </item>
         <item>
          <spacer name="horizontalSpacer">
@@ -156,36 +195,6 @@ background-color: rgba(255, 255, 255, .6);
          </widget>
         </item>
         <item>
-         <spacer name="horizontalSpacer_5">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="buttonLayout">
-        <item>
-         <spacer name="horizontalSpacer_4">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
          <widget class="QPushButton" name="sendButton">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -195,8 +204,8 @@ background-color: rgba(255, 255, 255, .6);
           </property>
           <property name="minimumSize">
            <size>
-            <width>80</width>
-            <height>25</height>
+            <width>50</width>
+            <height>50</height>
            </size>
           </property>
           <property name="text">
@@ -209,7 +218,7 @@ background-color: rgba(255, 255, 255, .6);
          </widget>
         </item>
         <item>
-         <spacer name="horizontalSpacer_3">
+         <spacer name="horizontalSpacer_5">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -246,16 +255,26 @@ background-color: rgba(255, 255, 255, .6);
     <property name="title">
      <string>Настройки</string>
     </property>
-    <addaction name="action_2"/>
+    <addaction name="offBtnSend"/>
+    <addaction name="separator"/>
+    <addaction name="clearCtx"/>
    </widget>
    <addaction name="menu"/>
   </widget>
-  <action name="action_2">
+  <action name="offBtnSend">
    <property name="checkable">
     <bool>true</bool>
    </property>
    <property name="text">
     <string>Отключить кнопку отправки</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
+   </property>
+  </action>
+  <action name="clearCtx">
+   <property name="text">
+    <string>Очистить контекст</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
