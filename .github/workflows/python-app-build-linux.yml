@@ -28,7 +28,7 @@ jobs:
         
     - name: Build Linux
       run: |
-        pyinstaller --noconfirm --onefile --windowed --icon "ui/icon.ico" --name "ChatGPTFree-App.linux" --add-data "ui/;ui/"  "main.py"
+        pyinstaller --noconfirm --onefile --windowed --icon "ui/icon.ico" --name "ChatGPTFree-App.linux" --add-data "ui/:ui/"  "main.py"
         
     - name: Upload artifact
       uses: actions/upload-artifact@v3
