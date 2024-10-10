@@ -35,6 +35,9 @@ class Ui_MainWindow(object):
 "border: 2px solid black;\n"
 "border-radius: 25px;\n"
 "}\n"
+"* {\n"
+"font-family: \"JetBrains Mono\", sans-serif;\n"
+"}\n"
 "")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setStyleSheet("")

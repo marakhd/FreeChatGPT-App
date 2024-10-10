@@ -43,6 +43,9 @@ height: 10px;
 border: 2px solid black;
 border-radius: 25px;
 }
+* {
+font-family: \"JetBrains Mono\", sans-serif;\n
+}
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
