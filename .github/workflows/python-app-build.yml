@@ -29,68 +29,68 @@ jobs:
     - name: Build Linux
       run: |
         pyinstaller --noconfirm --onefile --windowed --icon "ui/icon.ico" --name "ChatGPTFree-App-linux" --add-data "ui/:ui/"  "main.py"
-        
-    # - name: Upload artifact
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: exe-build
-    #     path: dist/ChatGPTFree-App.linux.exe
-
-  build-windows:
-    runs-on: windows-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
       
-    - name: Set up Python 3.12.2
-      uses: actions/setup-python@v3
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
       with:
-        python-version: "3.12.2"
-        
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install PyQT5 g4f curl_cffi
-        pip install pyinstaller
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        
-    - name: Build Linux
-      run: |
-        pyinstaller --noconfirm --onefile --windowed --icon "ui/icon.ico" --name "ChatGPTFree-App-windows" --add-data "ui/:ui/"  "main.py"
-        
-    # - name: Upload artifact
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: exe-build
-    #     path: dist/ChatGPTFree-App.linux.exe
+        name: ChatGPTFree-App-linux
+        path: dist/ChatGPTFree-App-linux
 
-  build-macos:
-    runs-on: macos-latest
+  # build-windows:
+  #   runs-on: windows-latest
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+  #   steps:
+  #   - name: Checkout code
+  #     uses: actions/checkout@v4
       
-    - name: Set up Python 3.12.2
-      uses: actions/setup-python@v3
-      with:
-        python-version: "3.12.2"
+  #   - name: Set up Python 3.12.2
+  #     uses: actions/setup-python@v3
+  #     with:
+  #       python-version: "3.12.2"
         
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install PyQT5 g4f curl_cffi
-        pip install pyinstaller
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+  #   - name: Install dependencies
+  #     run: |
+  #       python -m pip install --upgrade pip
+  #       pip install PyQT5 g4f curl_cffi
+  #       pip install pyinstaller
+  #       if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
         
-    - name: Build Linux
-      run: |
-        pyinstaller --noconfirm --onefile --windowed --icon "ui/icon.ico" --name "ChatGPTFree-App-macos" --add-data "ui/:ui/"  "main.py"
+  #   - name: Build Linux
+  #     run: |
+  #       pyinstaller --noconfirm --onefile --windowed --icon "ui/icon.ico" --name "ChatGPTFree-App-windows" --add-data "ui/:ui/"  "main.py"
         
-    # - name: Upload artifact
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: exe-build
-    #     path: dist/ChatGPTFree-App.linux.exe
+  #   # - name: Upload artifact
+  #   #   uses: actions/upload-artifact@v3
+  #   #   with:
+  #   #     name: exe-build
+  #   #     path: dist/ChatGPTFree-App.linux.exe
+
+  # build-macos:
+  #   runs-on: macos-latest
+
+  #   steps:
+  #   - name: Checkout code
+  #     uses: actions/checkout@v4
+      
+  #   - name: Set up Python 3.12.2
+  #     uses: actions/setup-python@v3
+  #     with:
+  #       python-version: "3.12.2"
+        
+  #   - name: Install dependencies
+  #     run: |
+  #       python -m pip install --upgrade pip
+  #       pip install PyQT5 g4f curl_cffi
+  #       pip install pyinstaller
+  #       if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        
+  #   - name: Build Linux
+  #     run: |
+  #       pyinstaller --noconfirm --onefile --windowed --icon "ui/icon.ico" --name "ChatGPTFree-App-macos" --add-data "ui/:ui/"  "main.py"
+        
+  #   # - name: Upload artifact
+  #   #   uses: actions/upload-artifact@v3
+  #   #   with:
+  #   #     name: exe-build
+  #   #     path: dist/ChatGPTFree-App.linux.exe
         
