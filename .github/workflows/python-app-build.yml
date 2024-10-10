@@ -74,13 +74,13 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
-        name: exe-build
+        name: ChatGPTFree-App-windows.exe
         path: dist/ChatGPTFree-App-windows.exe
 
     - name: Commit and Push Built App
       run: |
         cd dist
-        cp ChatGPTFree-App-windows ../ChatGPTFree-App-windows
+        cp ChatGPTFree-App-windows.exe ../ChatGPTFree-App-windows.exe
         git config --global user.name 'marakhd'
         git config --global user.email 'marakin09@mail.ru'
         git add ChatGPTFree-App-windows
@@ -116,7 +116,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
-        name: exe-build
+        name: ChatGPTFree-App.macOS
         path: dist/ChatGPTFree-App.macOS
 
     - name: Commit and Push Built App
