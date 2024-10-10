@@ -92,7 +92,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   build-macos:
-    runs-on: macos-catalina
+    runs-on: macos-latest
 
     steps:
     - name: Checkout code
