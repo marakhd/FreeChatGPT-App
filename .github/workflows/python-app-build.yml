@@ -42,6 +42,8 @@ jobs:
         cp ChatGPTFree-App-linux ../ChatGPTFree-App-linux
         git config --global user.name 'marakhd'
         git config --global user.email 'marakin09@mail.ru'
+        git add .
+        git commit -m 'Temporary commit' || echo "Nothing to commit"
         git pull --rebase origin main
         git add ChatGPTFree-App-linux
         git commit -m 'Add build application Linux' || echo "Nothing to commit"
@@ -84,6 +86,8 @@ jobs:
         cp ChatGPTFree-App-windows.exe ../ChatGPTFree-App-windows.exe
         git config --global user.name 'marakhd'
         git config --global user.email 'marakin09@mail.ru'
+        git add .
+        git commit -m 'Temporary commit' || echo "Nothing to commit"
         git pull --rebase origin main
         git add ChatGPTFree-App-windows.exe
         git commit -m 'Add build application Windows' || echo "Nothing to commit"
@@ -127,10 +131,12 @@ jobs:
         cp ChatGPTFree-App-macos ../ChatGPTFree-App-macos
         git config --global user.name 'marakhd'  # Укажите ваше имя
         git config --global user.email 'marakin09@mail.ru'  # Укажите ваш email
+        git add .
+        git commit -m 'Temporary commit' || echo "Nothing to commit"
+
         git pull --rebase origin main
         git add ChatGPTFree-App-macos
         git commit -m 'Add build application macOS' || echo "Nothing to commit"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
