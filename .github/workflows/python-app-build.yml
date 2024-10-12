@@ -119,7 +119,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: ChatGPTFree-App.macOS
-        path: dist/ChatGPTFree-App.macos
+        path: dist/ChatGPTFree-App-macos
 
     - name: Commit and Push Built App
       run: |
