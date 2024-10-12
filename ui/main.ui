@@ -31,20 +31,15 @@ background-image: url(:/bg/bg.webp);
 background-repeat: no-repeat; /* Избегаем повторений */
 background-position: center; /* Центрируем изображение */
 }
-QTextEdit, QListWidget {
+QListWidget#chatListWidget {
 background-color: rgba(255, 255, 255, .8);
 border-radius: 12px;
 padding: 10px;
 }
-QPushButton {
-background-color: rgba(255, 255, 255, .6);
-width: 20px;
-height: 10px;
-border: 2px solid black;
-border-radius: 25px;
-}
 * {
-font-family: \"JetBrains Mono\", sans-serif;\n
+font-family: &quot;JetBrains Mono&quot;, sans-serif;
+margin: 0;
+padding: 0;
 }
 </string>
   </property>
@@ -155,7 +150,7 @@ font: 25px &quot;JetBrains Mono&quot;;</string>
        </spacer>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="fieldLayout">
+       <layout class="QHBoxLayout" name="bottomLayout">
         <item>
          <spacer name="horizontalSpacer_6">
           <property name="orientation">
@@ -170,54 +165,134 @@ font: 25px &quot;JetBrains Mono&quot;;</string>
          </spacer>
         </item>
         <item>
-         <widget class="QTextEdit" name="inputField">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>350</width>
-            <height>0</height>
-           </size>
-          </property>
+         <widget class="QWidget" name="fieldWidget" native="true">
           <property name="maximumSize">
            <size>
-            <width>16777215</width>
+            <width>450</width>
             <height>120</height>
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true"/>
+           <string notr="true">#fieldWidget {
+background-color: rgba(255, 255, 255, .8);
+border-radius: 12px;
+padding: 0;
+}
+QPushButton#sendButton {
+margin: 5px;
+background-color: rgba(255, 255, 255, .0);
+border: 2px solid black;
+border-radius: 25px;
+}
+QPushButton#sendButton:pressed {
+background-color: rgba(0, 0, 0, .6);
+}
+QTextEdit{
+background-color: rgba(255, 255, 255, .0);
+border-radius: 12px;
+padding: 5px;
+}</string>
           </property>
-          <property name="placeholderText">
-           <string>Введите запрос...</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="sendButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="minimumSize">
-           <size>
-            <width>50</width>
-            <height>50</height>
-           </size>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-          <property name="icon">
-           <iconset resource="rcc/resource.qrc">
-            <normaloff>:/icon/icon-send.png</normaloff>:/icon/icon-send.png</iconset>
-          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QTextEdit" name="inputField">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>350</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>124</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <property name="placeholderText">
+              <string>Введите запрос...</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_7">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Maximum</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QWidget" name="btnWidget" native="true">
+             <property name="minimumSize">
+              <size>
+               <width>0</width>
+               <height>120</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true"/>
+             </property>
+             <layout class="QVBoxLayout" name="btnLayout">
+              <item>
+               <spacer name="verticalSpacer_2">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Minimum</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>10</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QPushButton" name="sendButton">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>60</width>
+                  <height>60</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="rcc/resource.qrc">
+                  <normaloff>:/icon/icon-send.png</normaloff>:/icon/icon-send.png</iconset>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </item>
         <item>
@@ -245,7 +320,7 @@ font: 25px &quot;JetBrains Mono&quot;;</string>
      <x>0</x>
      <y>0</y>
      <width>450</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <property name="acceptDrops">

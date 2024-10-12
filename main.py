@@ -24,7 +24,6 @@ class App(QMainWindow, Ui_MainWindow):
         self.result_queue = Queue()
 
         self.inputField.setFocus()
-        self.inputField.register_hendler(self._response)
 
         self.sendButton.clicked.connect(self._response)
 
@@ -100,7 +99,7 @@ class App(QMainWindow, Ui_MainWindow):
             QTimer.singleShot(100, self.__check_thread)
     
     def __state_btn(self) -> None:
-        self.sendButton.setVisible(not self.offBtnSend.isChecked())
+        self.btnWidget.setVisible(not self.offBtnSend.isChecked())
 
     def __clear_ctx(self) -> None:
         self.chatListWidget.clear()
